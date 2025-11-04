@@ -34,13 +34,13 @@
   -->
 
   <!-- Controller Manager Node -->
-  <node pkg="controller_manager" exec="ros2_control_node" output="both">
-    <param name="robot_description" value="$(var robot_description_content)"/>
+  <node pkg="controller_manager" exec="ros2_control_node" output="both" namespace="lasertracker">
     <param from="$(var robot_controllers)"/>
+    <remap from="/robot_description" to="/lasertracker/robot_description"/>
   </node>
 
   <!-- Robot State Publisher Node -->
-  <node pkg="robot_state_publisher" exec="robot_state_publisher" output="both">
+  <node pkg="robot_state_publisher" exec="robot_state_publisher" output="both" namespace="lasertracker">
     <param name="robot_description" value="$(var robot_description_content)"/>
   </node>
 
@@ -50,7 +50,7 @@
     internal logic to wait for the controller_manager to be available.
   -->
   <node pkg="controller_manager" exec="spawner"
-        args="pose_broadcaster --param-file $(var robot_controllers)"
+        args="pose_controller pose_broadcaster -c lasertracker/controller_manger --param-file $(var robot_controllers)"
         name="robot_controller_spawner"/>
 
 </launch>

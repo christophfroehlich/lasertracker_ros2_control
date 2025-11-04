@@ -24,7 +24,7 @@ docker run -it \
 
 ```bash
 cd /home/lasertracker_ws
-colcon build --packages-up-to --symlink-install
+colcon build --symlink-install
 source install/setup.bash
 sudo ln -s /usr/local/etherlab/bin/ethercat /usr/bin/
 sudo ln -s /usr/local/etherlab/etc/init.d/ethercat /etc/init.d/ethercat
