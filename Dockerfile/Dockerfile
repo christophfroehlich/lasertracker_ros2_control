@@ -2,10 +2,12 @@ ARG ROS_DISTRO="humble"
 FROM ros:${ROS_DISTRO}
 
 # Commands are combined in single RUN statement with "apt/lists" folder removal to reduce image size
-RUN apt-get update && \
+RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y \
     autoconf libtool \
-    ros-${ROS_DISTRO}-ros2-control ros-${ROS_DISTRO}-pose-broadcaster os-${ROS_DISTRO}-xacro && \
+    ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
+    ros-${ROS_DISTRO}-ros2-control ros-${ROS_DISTRO}-pose-broadcaster ros-${ROS_DISTRO}-xacro && \
+    : "remove cache" && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /home/ethercat_ws
@@ -23,6 +25,8 @@ RUN . /opt/ros/humble/setup.sh && \
     colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release --symlink-install && \
     : "remove cache" && \
     rm -rf /var/lib/apt/lists/*
+
+ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
 COPY Dockerfile/entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
