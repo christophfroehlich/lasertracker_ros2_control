@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="lasertracker_ros2_control">
+
+    <ros2_control name="lasertracker" type="system">
+      <hardware>
+        <plugin>ethercat_driver/EthercatDriver</plugin>
+        <param name="master_id">0</param>
+        <param name="control_frequency">100</param>
+      </hardware>
+
+      <sensor name="target">
+        <state_interface name="position.x"/>
+        <state_interface name="position.y"/>
+        <state_interface name="position.z"/>
+        <state_interface name="orientation.x"/>
+        <state_interface name="orientation.y"/>
+        <state_interface name="orientation.z"/>
+        <state_interface name="orientation.w"/>
+
+        <ec_module name="lasertracker_rtpf">
+          <plugin>ethercat_generic_plugins/GenericEcSlave</plugin>
+          <param name="alias">0</param>
+          <param name="position">0</param>
+          <param name="slave_config">$(find lasertracker_ros2_control)/bringup/config/lasertracker_rtpf_slave_config.yaml</param>
+        </ec_module>
+      </sensor>
+    </ros2_control>
+
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,9 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+pose_broadcaster:
+  ros__parameters:
+    type: pose_broadcaster/PoseBroadcaster
+    pose_name: "target"
+    frame_id: "base_link"

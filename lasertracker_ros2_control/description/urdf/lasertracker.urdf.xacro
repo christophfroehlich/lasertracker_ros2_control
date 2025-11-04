@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="lasertracker">
+
+  <!-- Import lasertracker ros2_control description -->
+  <xacro:include filename="$(find lasertracker_ros2_control)/description/ros2_control/lasertracker.ros2_control.xacro" />
+
+  <!-- Used for fixing sensor -->
+  <link name="world"/>
+
+  <link name="base_link"/>
+  <joint name="base_joint" type="fixed">
+    <parent link="world"/>
+    <child link="base_link" />
+  </joint>
+
+  <xacro:lasertracker_ros2_control/>
+
+</robot>
