@@ -11,13 +11,15 @@
       </hardware>
 
       <sensor name="target">
-        <state_interface name="position.x"/>
-        <state_interface name="position.y"/>
-        <state_interface name="position.z"/>
-        <state_interface name="orientation.x"/>
-        <state_interface name="orientation.y"/>
-        <state_interface name="orientation.z"/>
-        <state_interface name="orientation.w"/>
+        <state_interface name="status"/>
+        <state_interface name="angle_hz"/>
+        <state_interface name="angle_vt"/>
+        <state_interface name="distance"/>
+        <state_interface name="quaternion_0"/>
+        <state_interface name="quaternion_1"/>
+        <state_interface name="quaternion_2"/>
+        <state_interface name="quaternion_3"/>
+        <state_interface name="timestamp"/>
 
         <ec_module name="lasertracker_rtpf">
           <plugin>ethercat_generic_plugins/GenericEcSlave</plugin>

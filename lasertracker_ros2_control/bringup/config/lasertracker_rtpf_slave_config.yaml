@@ -1,15 +1,62 @@
-# Configuration file for Beckhoff EL3104
-vendor_id: 0x00000002
-product_id: 0x0c1e3052
+# Configuration file for Leica-RT-Output
+vendor_id: 0x1540
+product_id: 0x0000001
 tpdo:  # TxPDO
   - index: 0x1a00
     channels:
-      - {index: 0x3101, sub_index: 1, type: uint8}
       - {
-          index: 0x3101,
-          sub_index: 2,
-          type: int16,
-          state_interface: position.x,
+          index: 0x6000,
+          sub_index: 0,
+          type: uint32,
+          state_interface: status
+        }
+      - {
+          index: 0x6001,
+          sub_index: 0,
+          type: double,
+          state_interface: angle_hz
+        }
+      - {
+          index: 0x6002,
+          sub_index: 0,
+          type: double,
+          state_interface: angle_vt
+        }
+      - {
+          index: 0x6003,
+          sub_index: 0,
+          type: double,
+          state_interface: distance
+        }
+      - {
+          index: 0x6004,
+          sub_index: 0,
+          type: double,
+          state_interface: quaternion_0
+        }
+      - {
+          index: 0x6005,
+          sub_index: 0,
+          type: double,
+          state_interface: quaternion_1
+        }
+      - {
+          index: 0x6006,
+          sub_index: 0,
+          type: double,
+          state_interface: quaternion_2
+        }
+      - {
+          index: 0x6007,
+          sub_index: 0,
+          type: double,
+          state_interface: quaternion_3
+        }
+      - {
+          index: 0x6008,
+          sub_index: 0,
+          type: uint64,
+          state_interface: timestamp
         }
 sm:  # Sync Manager
   - {index: 0, type: output, pdo: ~, watchdog: disable}
