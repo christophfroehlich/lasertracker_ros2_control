@@ -32,7 +32,7 @@ PoseCalculator::command_interface_configuration() const
 }
 
 controller_interface::InterfaceConfiguration PoseCalculator::state_interface_configuration()
-  const
+const
 {
   controller_interface::InterfaceConfiguration state_interfaces_config;
   state_interfaces_config.type = controller_interface::interface_configuration_type::INDIVIDUAL;
@@ -41,21 +41,54 @@ controller_interface::InterfaceConfiguration PoseCalculator::state_interface_con
   return state_interfaces_config;
 }
 
+std::vector<hardware_interface::StateInterface> PoseCalculator::on_export_state_interfaces()
+{
+  std::vector<hardware_interface::StateInterface> exported_state_interfaces;
+
+  std::string export_prefix = "target/";
+
+  exported_state_interfaces.emplace_back(
+    hardware_interface::StateInterface(
+      export_prefix, "orientation.x", &pose_msg_.pose.orientation.x));
+  exported_state_interfaces.emplace_back(
+    hardware_interface::StateInterface(
+      export_prefix, "orientation.y", &pose_msg_.pose.orientation.y));
+  exported_state_interfaces.emplace_back(
+    hardware_interface::StateInterface(
+      export_prefix, "orientation.z", &pose_msg_.pose.orientation.z));
+  exported_state_interfaces.emplace_back(
+    hardware_interface::StateInterface(
+      export_prefix, "orientation.w", &pose_msg_.pose.orientation.w));
+  exported_state_interfaces.emplace_back(
+    hardware_interface::StateInterface(
+      export_prefix, "position.x", &pose_msg_.pose.position.x));
+  exported_state_interfaces.emplace_back(
+    hardware_interface::StateInterface(
+      export_prefix, "position.y", &pose_msg_.pose.position.y));
+  exported_state_interfaces.emplace_back(
+    hardware_interface::StateInterface(
+      export_prefix, "position.z", &pose_msg_.pose.position.z));
+
+  return exported_state_interfaces;
+}
+
 controller_interface::CallbackReturn PoseCalculator::on_configure(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
-  state_interface_names_ = {};
+  state_interface_names_ = {
+    "angle_hz",
+    "angle_vt",
+    "distance",
+    "quaternion_0",
+    "quaternion_1",
+    "quaternion_2",
+    "quaternion_3"
+  };
 
   // pre-reserve command interfaces
-  state_interfaces_.reserve(command_interface_names_.size());
+  state_interfaces_.reserve(state_interface_names_.size());
 
   RCLCPP_INFO(this->get_node()->get_logger(), "configure successful");
-
-  // The names should be in the same order as for command interfaces for easier matching
-  reference_interface_names_ = command_interface_names_;
-  // for any case make reference interfaces size of command interfaces
-  reference_interfaces_.resize(
-    reference_interface_names_.size(), std::numeric_limits<double>::quiet_NaN());
 
   return controller_interface::CallbackReturn::SUCCESS;
 }
@@ -63,10 +96,6 @@ controller_interface::CallbackReturn PoseCalculator::on_configure(
 controller_interface::CallbackReturn PoseCalculator::on_activate(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
-  // reset command buffer if a command came through callback when controller was inactive
-  reset_controller_reference_msg(command_);
-  rt_buffer_.try_set(command_);
-
   RCLCPP_INFO(this->get_node()->get_logger(), "activate successful");
 
   std::fill(
@@ -85,56 +114,17 @@ controller_interface::CallbackReturn PoseCalculator::on_deactivate(
 controller_interface::return_type PoseCalculator::update_and_write_commands(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
-  for (size_t i = 0; i < state_interfaces_.size(); ++i)
-  {
-    if (!std::isnan(reference_interfaces_[i]))
-    {
-      state_interfaces_[i].set_value(reference_interfaces_[i]);
-    }
-  }
+  update_data_from_interfaces();
 
-  return controller_interface::return_type::OK;
-}
-
-std::vector<hardware_interface::CommandInterface>
-PoseCalculator::on_export_reference_interfaces()
-{
-  std::vector<hardware_interface::CommandInterface> reference_interfaces;
-
-  for (size_t i = 0; i < reference_interface_names_.size(); ++i)
-  {
-    reference_interfaces.push_back(
-      hardware_interface::CommandInterface(
-        get_node()->get_name(), reference_interface_names_[i], &reference_interfaces_[i]));
-  }
-
-  return reference_interfaces;
-}
-
-controller_interface::return_type PoseCalculator::update_reference_from_subscribers(
-  const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
-{
-  auto command_op = rt_buffer_.try_get();
-  if (command_op.has_value())
-  {
-    command_ = command_op.value();
-  }
-  // message is valid
-  if (
-    !command_.data.empty() && std::all_of(
-                                command_.data.cbegin(), command_.data.cend(),
-                                [](const auto & value) { return std::isfinite(value); }))
-  {
-    if (reference_interfaces_.size() != command_.data.size())
-    {
-      RCLCPP_ERROR_THROTTLE(
-        get_node()->get_logger(), *(get_node()->get_clock()), 1000,
-        "command size (%zu) does not match number of reference interfaces (%zu)",
-        command_.data.size(), reference_interfaces_.size());
-      return controller_interface::return_type::ERROR;
-    }
-    reference_interfaces_ = command_.data;
-  }
+  // Convert to Cartesian coordinates
+  pose_msg_.pose.position.x = data_[2] * std::cos(data_[1]) * std::cos(data_[0]);
+  pose_msg_.pose.position.y = data_[2] * std::cos(data_[1]) * std::sin(data_[0]);
+  pose_msg_.pose.position.z = data_[2] * std::sin(data_[1]);
+  // fix order of quaternion components
+  pose_msg_.pose.orientation.x = data_[4];
+  pose_msg_.pose.orientation.y = data_[5];
+  pose_msg_.pose.orientation.z = data_[6];
+  pose_msg_.pose.orientation.w = data_[3];
 
   return controller_interface::return_type::OK;
 }

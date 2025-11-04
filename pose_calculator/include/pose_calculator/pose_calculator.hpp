@@ -12,16 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef PASSTHROUGH_CONTROLLER__PASSTHROUGH_CONTROLLER_HPP_
-#define PASSTHROUGH_CONTROLLER__PASSTHROUGH_CONTROLLER_HPP_
+#ifndef POSE_CALCULATOR__POSE_CALCULATOR_HPP_
+#define POSE_CALCULATOR__POSE_CALCULATOR_HPP_
 
 // system
+#include <array>
 #include <limits>
-#include <memory>
 #include <string>
 #include <vector>
 
 #include "controller_interface/chainable_controller_interface.hpp"
+#include "geometry_msgs/msg/pose_stamped.hpp"
 
 namespace pose_calculator
 {
@@ -43,19 +44,42 @@ public:
   controller_interface::CallbackReturn on_deactivate(
     const rclcpp_lifecycle::State & previous_state) override;
 
+  controller_interface::return_type update_reference_from_subscribers(
+    const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/) override
+  {
+    return controller_interface::return_type::OK;
+  }
+
   controller_interface::return_type update_and_write_commands(
     const rclcpp::Time & time, const rclcpp::Duration & period) override;
 
+  std::vector<hardware_interface::StateInterface> on_export_state_interfaces() override;
+
 protected:
-  std::vector<hardware_interface::CommandInterface> on_export_reference_interfaces() override;
-
-  controller_interface::return_type update_reference_from_subscribers(
-    const rclcpp::Time & time, const rclcpp::Duration & period) override;
-
-  std::vector<std::string> reference_interface_names_;
-
   std::vector<std::string> state_interface_names_;
+
+  geometry_msgs::msg::PoseStamped pose_msg_;
+
+  mutable std::array<double, 10> data_{{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0}};
+
+private:
+  /**
+   * @brief Update the data array from the state interfaces.
+   * @note This method is thread-safe and non-blocking.
+   * @note This method might return stale data if the data is not updated. This is to ensure that
+   * the data from the sensor is not discontinuous.
+   */
+  void update_data_from_interfaces() const
+  {
+    for (auto i = 0u; i < data_.size(); ++i) {
+      const auto data = state_interfaces_[i].get_optional();
+      if (data.has_value()) {
+        data_[i] = data.value();
+      }
+    }
+  }
+
 };
 }  // namespace pose_calculator
 
-#endif  // PASSTHROUGH_CONTROLLER__PASSTHROUGH_CONTROLLER_HPP_
+#endif  // POSE_CALCULATOR__POSE_CALCULATOR_HPP_
