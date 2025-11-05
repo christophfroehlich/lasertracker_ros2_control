@@ -45,7 +45,7 @@ std::vector<hardware_interface::StateInterface> PoseCalculator::on_export_state_
 {
   std::vector<hardware_interface::StateInterface> exported_state_interfaces;
 
-  std::string export_prefix = "target/";
+  std::string export_prefix = get_node()->get_name() + std::string("/target");
 
   exported_state_interfaces.emplace_back(
     hardware_interface::StateInterface(
@@ -76,20 +76,19 @@ controller_interface::CallbackReturn PoseCalculator::on_configure(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
   state_interface_names_ = {
-    "angle_hz",
-    "angle_vt",
-    "distance",
-    "quaternion_0",
-    "quaternion_1",
-    "quaternion_2",
-    "quaternion_3"
+    "target/angle_hz",
+    "target/angle_vt",
+    "target/distance",
+    "target/quaternion_0",
+    "target/quaternion_1",
+    "target/quaternion_2",
+    "target/quaternion_3"
   };
 
   // pre-reserve command interfaces
   state_interfaces_.reserve(state_interface_names_.size());
 
   RCLCPP_INFO(this->get_node()->get_logger(), "configure successful");
-
   return controller_interface::CallbackReturn::SUCCESS;
 }
 
@@ -97,11 +96,6 @@ controller_interface::CallbackReturn PoseCalculator::on_activate(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
   RCLCPP_INFO(this->get_node()->get_logger(), "activate successful");
-
-  std::fill(
-    reference_interfaces_.begin(), reference_interfaces_.end(),
-    std::numeric_limits<double>::quiet_NaN());
-
   return controller_interface::CallbackReturn::SUCCESS;
 }
 

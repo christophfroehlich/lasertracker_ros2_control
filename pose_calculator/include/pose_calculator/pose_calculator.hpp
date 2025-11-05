@@ -17,7 +17,6 @@
 
 // system
 #include <array>
-#include <limits>
 #include <string>
 #include <vector>
 
@@ -60,7 +59,7 @@ protected:
 
   geometry_msgs::msg::PoseStamped pose_msg_;
 
-  mutable std::array<double, 10> data_{{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0}};
+  mutable std::array<double, 7> data_{{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0}};
 
 private:
   /**
