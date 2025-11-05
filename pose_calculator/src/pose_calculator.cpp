@@ -111,9 +111,9 @@ controller_interface::return_type PoseCalculator::update_and_write_commands(
   update_data_from_interfaces();
 
   // Convert to Cartesian coordinates
-  pose_msg_.pose.position.x = data_[2] * std::cos(data_[1]) * std::cos(data_[0]);
-  pose_msg_.pose.position.y = data_[2] * std::cos(data_[1]) * std::sin(data_[0]);
-  pose_msg_.pose.position.z = data_[2] * std::sin(data_[1]);
+  pose_msg_.pose.position.x = data_[2] * std::sin(data_[1]) * std::cos(data_[0]);
+  pose_msg_.pose.position.y = data_[2] * std::sin(data_[1]) * std::sin(data_[0]);
+  pose_msg_.pose.position.z = data_[2] * std::cos(data_[1]);
   // fix order of quaternion components
   pose_msg_.pose.orientation.x = data_[4];
   pose_msg_.pose.orientation.y = data_[5];
