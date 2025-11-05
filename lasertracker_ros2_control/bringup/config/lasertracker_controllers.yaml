@@ -1,13 +1,16 @@
 /**/controller_manager:
   ros__parameters:
     update_rate: 100  # Hz
+    lock_memory: true
 
 /**/pose_calculator:
   ros__parameters:
+    is_async: true
     type: pose_calculator/PoseCalculator
 
 /**/pose_broadcaster:
   ros__parameters:
+    is_async: true
     type: pose_broadcaster/PoseBroadcaster
     pose_name: "pose_calculator/target"
     frame_id: "lasertracker"

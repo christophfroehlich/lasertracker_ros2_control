@@ -3,7 +3,7 @@
 
   <xacro:macro name="lasertracker_ros2_control">
 
-    <ros2_control name="lasertracker" type="system">
+    <ros2_control name="lasertracker" type="system" is_async="true" thread_priority="50">
       <hardware>
         <plugin>ethercat_driver/EthercatDriver</plugin>
         <param name="master_id">0</param>
