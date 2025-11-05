@@ -22,7 +22,7 @@
 
   <!-- Get URDF via xacro -->
   <let name="robot_description_content"
-       value="$(command '$(find-exec xacro) $(find-pkg-share lasertracker_ros2_control)/description/urdf/lasertracker.urdf.xacro')"/>
+       value="$(command '$(find-exec xacro) $(find-pkg-share lasertracker_ros2_control)/description/urdf/lasertracker.urdf.xacro mock_hardware:=false')"/>
 
   <!-- Path to controller configurations -->
   <let name="robot_controllers"
