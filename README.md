@@ -4,6 +4,9 @@ Leica Hexagon Lasertracker with RTFP-EtherCAT via ros2_control
 ## Install
 On the host system
 https://icube-robotics.github.io/ethercat_driver_ros2/quickstart/installation.html
+for ethercat configuration.
+
+Build dockerfile included in this repo
 ```bash
 docker build . -t lasertracker_ros2_control -f Dockerfile/Dockerfile
 ```
@@ -12,6 +15,13 @@ docker build . -t lasertracker_ros2_control -f Dockerfile/Dockerfile
 on host:
 ```bash
 sudo /etc/init.d/ethercat start
+```
+should give you `Starting EtherCAT master 1.5.3  done`.
+
+Check if device was created
+```bash
+ls -la /dev/EtherCAT0
+sudo ethercat master
 ethercat slaves
 ```
 should give 
