@@ -50,7 +50,15 @@
     internal logic to wait for the controller_manager to be available.
   -->
   <node pkg="controller_manager" exec="spawner"
-        args="pose_controller pose_broadcaster -c lasertracker/controller_manger --param-file $(var robot_controllers)"
+        args="pose_calculator pose_broadcaster -c lasertracker/controller_manager --param-file $(var robot_controllers)"
         name="robot_controller_spawner"/>
+
+  <!--
+    Static Transform Publisher Node
+    Publishes a static transform between 'world' and 'lasertracker' frames.
+  -->
+  <node pkg="tf2_ros" exec="static_transform_publisher"
+        args="--frame-id map --child-frame-id lasertracker"
+        name="static_transform_lasertracker"/>
 
 </launch>

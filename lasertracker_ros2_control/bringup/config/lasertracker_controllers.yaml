@@ -1,13 +1,13 @@
-controller_manager:
+/**/controller_manager:
   ros__parameters:
     update_rate: 100  # Hz
 
-pose_calculator:
+/**/pose_calculator:
   ros__parameters:
     type: pose_calculator/PoseCalculator
 
-pose_broadcaster:
+/**/pose_broadcaster:
   ros__parameters:
     type: pose_broadcaster/PoseBroadcaster
-    pose_name: "target"
-    frame_id: "base_link"
+    pose_name: "pose_calculator/target"
+    frame_id: "lasertracker"
