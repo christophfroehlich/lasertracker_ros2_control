@@ -1,0 +1,860 @@
+Panels:
+  - Class: rviz_common/Displays
+    Help Height: 78
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /Status1
+        - /TF1
+        - /TF1/Status1
+        - /RobotModel1
+      Splitter Ratio: 0.5
+    Tree Height: 752
+  - Class: rviz_common/Selection
+    Name: Selection
+  - Class: rviz_common/Tool Properties
+    Expanded:
+      - /2D Goal Pose1
+      - /Publish Point1
+    Name: Tool Properties
+    Splitter Ratio: 0.5886790156364441
+  - Class: rviz_common/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz_common/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: ""
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz_default_plugins/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 1
+      Axes Length: 1
+      Axes Radius: 0.10000000149011612
+      Class: rviz_default_plugins/Pose
+      Color: 255; 25; 0
+      Enabled: true
+      Head Length: 0.30000001192092896
+      Head Radius: 0.10000000149011612
+      Name: Pose
+      Shaft Length: 1
+      Shaft Radius: 0.05000000074505806
+      Shape: Arrow
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        Filter size: 10
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /lasertracker/pose_broadcaster/pose
+      Value: true
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        A_ortho_frame_facing_back:
+          Value: true
+        A_ortho_frame_facing_front:
+          Value: true
+        A_ortho_frame_facing_left:
+          Value: true
+        A_ortho_frame_facing_right:
+          Value: true
+        All Enabled: true
+        K0_mounting_base:
+          Value: true
+        K10_outer_jaw:
+          Value: true
+        K11:
+          Value: true
+        K12_inner_jaw:
+          Value: true
+        K1_boom_cylinder_suspension:
+          Value: true
+        K1_slewing_column:
+          Value: true
+        K2_arm_cylinder_suspension:
+          Value: true
+        K2_boom:
+          Value: true
+        K3_arm:
+          Value: true
+        K4_outer_telescope:
+          Value: true
+        K5_inner_telescope:
+          Value: true
+        K6_double_joint_link:
+          Value: true
+        K7_rotator_upper_part:
+          Value: true
+        K8_rotator_lower_part:
+          Value: true
+        K8_tool_center_point:
+          Value: true
+        K9:
+          Value: true
+        blackfly_left_camera_frame:
+          Value: true
+        blackfly_left_camera_optical_frame:
+          Value: true
+        blackfly_right_camera_optical_frame:
+          Value: true
+        cab_fender:
+          Value: true
+        control_box:
+          Value: true
+        control_box_sensor_mount:
+          Value: true
+        desired/K0_mounting_base:
+          Value: true
+        desired/K10_outer_jaw:
+          Value: true
+        desired/K11:
+          Value: true
+        desired/K12_inner_jaw:
+          Value: true
+        desired/K1_boom_cylinder_suspension:
+          Value: true
+        desired/K1_slewing_column:
+          Value: true
+        desired/K2_arm_cylinder_suspension:
+          Value: true
+        desired/K2_boom:
+          Value: true
+        desired/K3_arm:
+          Value: true
+        desired/K4_outer_telescope:
+          Value: true
+        desired/K5_inner_telescope:
+          Value: true
+        desired/K6_double_joint_link:
+          Value: true
+        desired/K7_rotator_upper_part:
+          Value: true
+        desired/K8_rotator_lower_part:
+          Value: true
+        desired/K8_tool_center_point:
+          Value: true
+        desired/K9:
+          Value: true
+        desired/blackfly_left_camera_frame:
+          Value: true
+        desired/blackfly_left_camera_optical_frame:
+          Value: true
+        desired/blackfly_right_camera_optical_frame:
+          Value: true
+        desired/control_box:
+          Value: true
+        desired/control_box_sensor_mount:
+          Value: true
+        desired/hydraulic_block:
+          Value: true
+        desired/imu15:
+          Value: true
+        desired/imu15_origin:
+          Value: true
+        desired/imu16:
+          Value: true
+        desired/imu16_origin:
+          Value: true
+        desired/imu17:
+          Value: true
+        desired/imu17_origin:
+          Value: true
+        desired/livox_frame:
+          Value: true
+        desired/moved_with_q1:
+          Value: true
+        desired/moved_with_q10:
+          Value: true
+        desired/moved_with_q12:
+          Value: true
+        desired/moved_with_q2:
+          Value: true
+        desired/moved_with_q3:
+          Value: true
+        desired/moved_with_q4:
+          Value: true
+        desired/moved_with_q5:
+          Value: true
+        desired/moved_with_q6:
+          Value: true
+        desired/moved_with_q7:
+          Value: true
+        desired/moved_with_q8:
+          Value: true
+        desired/telescope_bended:
+          Value: true
+        desired/tool_contact_point:
+          Value: true
+        desired/tool_side_view:
+          Value: true
+        desired/zed2i_camera_center:
+          Value: true
+        desired/zed2i_camera_screw:
+          Value: true
+        desired/zed2i_left_camera_frame:
+          Value: true
+        desired/zed2i_left_camera_optical_frame:
+          Value: true
+        desired/zed2i_right_camera_frame:
+          Value: true
+        desired/zed2i_right_camera_optical_frame:
+          Value: true
+        elastic/K0_mounting_base:
+          Value: true
+        elastic/K10_outer_jaw:
+          Value: true
+        elastic/K11:
+          Value: true
+        elastic/K12_inner_jaw:
+          Value: true
+        elastic/K1_boom_cylinder_suspension:
+          Value: true
+        elastic/K1_slewing_column:
+          Value: true
+        elastic/K2_arm_cylinder_suspension:
+          Value: true
+        elastic/K2_boom:
+          Value: true
+        elastic/K3_arm:
+          Value: true
+        elastic/K4_outer_telescope:
+          Value: true
+        elastic/K5_inner_telescope:
+          Value: true
+        elastic/K6_double_joint_link:
+          Value: true
+        elastic/K7_rotator_upper_part:
+          Value: true
+        elastic/K8_rotator_lower_part:
+          Value: true
+        elastic/K8_tool_center_point:
+          Value: true
+        elastic/K9:
+          Value: true
+        elastic/blackfly_left_camera_frame:
+          Value: true
+        elastic/blackfly_left_camera_optical_frame:
+          Value: true
+        elastic/blackfly_right_camera_optical_frame:
+          Value: true
+        elastic/cab_fender:
+          Value: true
+        elastic/control_box:
+          Value: true
+        elastic/control_box_sensor_mount:
+          Value: true
+        elastic/hydraulic_block:
+          Value: true
+        elastic/imu15:
+          Value: true
+        elastic/imu15_origin:
+          Value: true
+        elastic/imu16:
+          Value: true
+        elastic/imu16_origin:
+          Value: true
+        elastic/imu17:
+          Value: true
+        elastic/imu17_origin:
+          Value: true
+        elastic/livox_frame:
+          Value: true
+        elastic/moved_with_q1:
+          Value: true
+        elastic/moved_with_q10:
+          Value: true
+        elastic/moved_with_q12:
+          Value: true
+        elastic/moved_with_q2:
+          Value: true
+        elastic/moved_with_q3:
+          Value: true
+        elastic/moved_with_q4:
+          Value: true
+        elastic/moved_with_q5:
+          Value: true
+        elastic/moved_with_q6:
+          Value: true
+        elastic/moved_with_q7:
+          Value: true
+        elastic/moved_with_q8:
+          Value: true
+        elastic/telescope_bended:
+          Value: true
+        elastic/tool_contact_point:
+          Value: true
+        elastic/tool_side_view:
+          Value: true
+        elastic/tr_bed:
+          Value: true
+        elastic/tr_black:
+          Value: true
+        elastic/tr_crane_frameplate:
+          Value: true
+        elastic/tr_grey:
+          Value: true
+        elastic/tr_rr_fender:
+          Value: true
+        elastic/tr_rr_rims:
+          Value: true
+        elastic/tr_rr_wheels:
+          Value: true
+        elastic/tr_rungen:
+          Value: true
+        elastic/tr_tank:
+          Value: true
+        elastic/tr_white:
+          Value: true
+        elastic/truck_cab:
+          Value: true
+        elastic/truck_origin:
+          Value: true
+        elastic/truck_rotated_pitch:
+          Value: true
+        elastic/truck_rotated_roll:
+          Value: true
+        elastic/world:
+          Value: true
+        elastic/zed2i_camera_center:
+          Value: true
+        elastic/zed2i_camera_screw:
+          Value: true
+        elastic/zed2i_left_camera_frame:
+          Value: true
+        elastic/zed2i_left_camera_optical_frame:
+          Value: true
+        elastic/zed2i_right_camera_frame:
+          Value: true
+        elastic/zed2i_right_camera_optical_frame:
+          Value: true
+        hydraulic_block:
+          Value: true
+        imu15:
+          Value: true
+        imu15_origin:
+          Value: true
+        imu16:
+          Value: true
+        imu16_origin:
+          Value: true
+        imu17:
+          Value: true
+        imu17_origin:
+          Value: true
+        lasertracker:
+          Value: true
+        livox_frame:
+          Value: true
+        load_bed_reference:
+          Value: true
+        map:
+          Value: true
+        map_ICP:
+          Value: true
+        moved_with_q1:
+          Value: true
+        moved_with_q10:
+          Value: true
+        moved_with_q12:
+          Value: true
+        moved_with_q2:
+          Value: true
+        moved_with_q3:
+          Value: true
+        moved_with_q4:
+          Value: true
+        moved_with_q5:
+          Value: true
+        moved_with_q6:
+          Value: true
+        moved_with_q7:
+          Value: true
+        moved_with_q8:
+          Value: true
+        pose_calculator/target:
+          Value: true
+        seyond:
+          Value: true
+        telescope_bended:
+          Value: true
+        tool_contact_point:
+          Value: true
+        tool_side_view:
+          Value: true
+        tr_bed:
+          Value: true
+        tr_black:
+          Value: true
+        tr_crane_frameplate:
+          Value: true
+        tr_grey:
+          Value: true
+        tr_rr_fender:
+          Value: true
+        tr_rr_rims:
+          Value: true
+        tr_rr_wheels:
+          Value: true
+        tr_rungen:
+          Value: true
+        tr_tank:
+          Value: true
+        tr_white:
+          Value: true
+        truck_cab:
+          Value: true
+        truck_origin:
+          Value: true
+        truck_rotated_pitch:
+          Value: true
+        truck_rotated_roll:
+          Value: true
+        world:
+          Value: true
+        zed2i_camera_center:
+          Value: true
+        zed2i_camera_screw:
+          Value: true
+        zed2i_left_camera_frame:
+          Value: true
+        zed2i_left_camera_optical_frame:
+          Value: true
+        zed2i_right_camera_frame:
+          Value: true
+        zed2i_right_camera_optical_frame:
+          Value: true
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        map:
+          lasertracker:
+            pose_calculator/target:
+              {}
+      Update Interval: 0
+      Value: true
+    - Alpha: 1
+      Class: rviz_default_plugins/RobotModel
+      Collision Enabled: false
+      Description File: ""
+      Description Source: Topic
+      Description Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_description
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        K0_mounting_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        K10_outer_jaw:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        K11:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        K12_inner_jaw:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        K1_boom_cylinder_suspension:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        K1_slewing_column:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        K2_arm_cylinder_suspension:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        K2_boom:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        K3_arm:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        K4_outer_telescope:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        K5_inner_telescope:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        K6_double_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        K7_rotator_upper_part:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        K8_rotator_lower_part:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        K8_tool_center_point:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        K9:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        Link Tree Style: Links in Alphabetic Order
+        blackfly_left_camera_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        blackfly_left_camera_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        blackfly_right_camera_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        cab_fender:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        control_box:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        control_box_sensor_mount:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        hydraulic_block:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        imu15:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        imu15_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        imu16:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        imu16_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        imu17:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        imu17_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        livox_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        moved_with_q1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        moved_with_q10:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        moved_with_q12:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        moved_with_q2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        moved_with_q3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        moved_with_q4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        moved_with_q5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        moved_with_q6:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        moved_with_q7:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        moved_with_q8:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        telescope_bended:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        tool_contact_point:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        tool_side_view:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        tr_bed:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        tr_black:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        tr_crane_frameplate:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        tr_grey:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        tr_rr_fender:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        tr_rr_rims:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        tr_rr_wheels:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        tr_rungen:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        tr_tank:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        tr_white:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        truck_cab:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        truck_origin:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        truck_rotated_pitch:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        truck_rotated_roll:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        world:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        zed2i_camera_center:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        zed2i_camera_screw:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        zed2i_left_camera_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        zed2i_left_camera_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        zed2i_right_camera_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        zed2i_right_camera_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+      Mass Properties:
+        Inertia: false
+        Mass: false
+      Name: RobotModel
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: world
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+      Line color: 128; 128; 0
+    - Class: rviz_default_plugins/SetInitialPose
+      Covariance x: 0.25
+      Covariance y: 0.25
+      Covariance yaw: 0.06853891909122467
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /initialpose
+    - Class: rviz_default_plugins/SetGoal
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /goal_pose
+    - Class: rviz_default_plugins/PublishPoint
+      Single click: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /clicked_point
+  Transformation:
+    Current:
+      Class: rviz_default_plugins/TF
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 9.777737617492676
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: 1.02133309841156
+        Y: -1.6642054319381714
+        Z: 2.277353525161743
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.42539992928504944
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+      Yaw: 6.006761074066162
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 1043
+  Hide Left Dock: false
+  Hide Right Dock: true
+  QMainWindow State: 000000ff00000000fd00000004000000000000024e00000379fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003b00000379000000c700fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000010f00000359fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003b00000359000000a000fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000007800000003efc0100000002fb0000000800540069006d00650100000000000007800000025300fffffffb0000000800540069006d006501000000000000045000000000000000000000052c0000037900000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Selection:
+    collapsed: false
+  Time:
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: true
+  Width: 1920
+  X: 1920
+  Y: 0
