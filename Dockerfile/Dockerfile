@@ -17,7 +17,7 @@ RUN git clone https://gitlab.com/etherlab.org/ethercat.git && \
     ./bootstrap && \
     ./configure --prefix=/usr/local/etherlab --disable-kernel && \
     make && make install
-    
+
 # build ros2_control framework
 # and ethercat plugins
 WORKDIR /home/ros2_ws

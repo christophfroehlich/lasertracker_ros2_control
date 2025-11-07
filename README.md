@@ -24,7 +24,7 @@ ls -la /dev/EtherCAT0
 sudo ethercat master
 ethercat slaves
 ```
-should give 
+should give
 ```bash
 0  0:0  PREOP  +  Leica RT Output
 ```
@@ -51,5 +51,5 @@ sudo ln -s /usr/local/etherlab/etc/init.d/ethercat /etc/init.d/ethercat
 sudo mkdir -p /etc/sysconfig
 sudo cp /usr/local/etherlab/etc/sysconfig/ethercat /etc/sysconfig/ethercat
 export CYCLONEDDS_URI=/opt/ait/install/config/cyclonedds_config.xml
-ros2 launch lasertracker_ros2_control lasertracker.launch.xml 
+ros2 launch lasertracker_ros2_control lasertracker.launch.xml
 ```
