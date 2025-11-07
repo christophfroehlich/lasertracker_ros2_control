@@ -77,7 +77,6 @@ private:
       }
     }
   }
-
 };
 }  // namespace pose_calculator
 
