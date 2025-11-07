@@ -14,7 +14,12 @@
         </hardware>
 
         <sensor name="target">
-          <state_interface name="status"/>
+          <state_interface name="measurement_ok"/>
+          <state_interface name="measure_mode_3d"/>
+          <state_interface name="measure_mode_6d"/>
+          <state_interface name="bad_accuracy"/>
+          <state_interface name="angle_out_of_range"/>
+          <state_interface name="distance_out_of_range"/>
           <state_interface name="angle_hz"/>
           <state_interface name="angle_vt"/>
           <state_interface name="distance"/>
@@ -41,7 +46,12 @@
         </hardware>
 
         <sensor name="target">
-          <state_interface name="status"/>
+          <state_interface name="measurement_ok"/>
+          <state_interface name="measure_mode_3d"/>
+          <state_interface name="measure_mode_6d"/>
+          <state_interface name="bad_accuracy"/>
+          <state_interface name="angle_out_of_range"/>
+          <state_interface name="distance_out_of_range"/>
           <state_interface name="angle_hz"/>
           <state_interface name="angle_vt"/>
           <state_interface name="distance"/>
