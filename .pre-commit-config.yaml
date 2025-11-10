@@ -34,7 +34,7 @@ repos:
 
   # Python hooks
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.20.0
+    rev: v3.21.1
     hooks:
       - id: pyupgrade
         args: [--py36-plus]
@@ -49,7 +49,7 @@ repos:
 
   # CPP hooks
   - repo: https://github.com/pre-commit/mirrors-clang-format
-    rev: v21.1.2
+    rev: v21.1.5
     hooks:
       - id: clang-format
         args: ["-fallback-style=none", "-i"]
@@ -62,7 +62,7 @@ repos:
           [
             "--no-warnings",
             "--config-data",
-            "{extends: default, rules: {line-length: disable, indentation: disable}}",
+            "{extends: default, rules: {line-length: disable}}",
           ]
         types: [text]
         files: \.(yaml|yml)$
@@ -72,7 +72,7 @@ repos:
       - id: ament_cppcheck
         name: ament_cppcheck
         description: Static code analysis of C/C++ files.
-        entry: env AMENT_CPPCHECK_ALLOW_SLOW_VERSIONS=1 ament_cppcheck
+        entry: env AMENT_CPPCHECK_ALLOW_SLOW_VERSIONS=1 ament_cppcheck --language c++
         language: system
         files: \.(h\+\+|h|hh|hxx|hpp|cuh|c|cc|cpp|cu|c\+\+|cxx|tpp|txx)$
 
@@ -87,15 +87,14 @@ repos:
         args:
           ["--linelength=100", "--filter=-whitespace/newline,-legal/copyright"]
 
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    # Ruff version.
-    rev: v0.13.3
+  - repo: local
     hooks:
-      # Run the linter.
-      - id: ruff-check
-        args: ["--fix"]
-      # Run the formatter.
-      - id: ruff-format
+      - id: ament_xmllint
+        name: ament_xmllint
+        description: Check format of xml files.
+        entry: ament_xmllint
+        language: system
+        files: \.(xml)$
 
   - repo: local
     hooks:
@@ -106,11 +105,21 @@ repos:
         language: system
         files: CMakeLists\.txt$
 
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.14.4
+    hooks:
+      # Run the linter.
+      - id: ruff-check
+        args: ["--select", "I", "--select", "F", "--fix"]
+      # Run the formatter.
+      - id: ruff-format
+
   # Spellcheck in comments and docs
   # skipping of *.svg files is not working...
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.1
     hooks:
       - id: codespell
-        args: ["--write-changes"]
+        args: ["--write-changes", "-L debians"]
         exclude: CHANGELOG\.rst|\.(svg|pyc|drawio)$
