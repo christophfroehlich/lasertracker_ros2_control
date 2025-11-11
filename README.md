@@ -15,12 +15,12 @@ on host:
 ```bash
 sudo /etc/init.d/ethercat start
 ```
-should give you `Starting EtherCAT master 1.5.3  done`.
+should give you `Starting EtherCAT master 1.6.8  done`.
 
 Check if device was created
 ```bash
 ls -la /dev/EtherCAT0
-sudo ethercat master
+ethercat master
 ethercat slaves
 ```
 should give
