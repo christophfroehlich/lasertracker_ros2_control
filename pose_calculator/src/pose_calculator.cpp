@@ -68,6 +68,24 @@ std::vector<hardware_interface::StateInterface> PoseCalculator::on_export_state_
   exported_state_interfaces.emplace_back(
     hardware_interface::StateInterface(
       export_prefix, "position.z", &pose_msg_.pose.position.z));
+  exported_state_interfaces.emplace_back(
+    hardware_interface::StateInterface(
+      export_prefix, "measurement_ok", "double"));
+  exported_state_interfaces.emplace_back(
+    hardware_interface::StateInterface(
+      export_prefix, "measure_mode_3d", "double"));
+  exported_state_interfaces.emplace_back(
+    hardware_interface::StateInterface(
+      export_prefix, "measure_mode_6d", "double"));
+  exported_state_interfaces.emplace_back(
+    hardware_interface::StateInterface(
+      export_prefix, "bad_accuracy", "double"));
+  exported_state_interfaces.emplace_back(
+    hardware_interface::StateInterface(
+      export_prefix, "angle_out_of_range", "double"));
+  exported_state_interfaces.emplace_back(
+    hardware_interface::StateInterface(
+      export_prefix, "distance_out_of_range", "double"));
 
   return exported_state_interfaces;
 }
@@ -82,7 +100,8 @@ controller_interface::CallbackReturn PoseCalculator::on_configure(
     "target/quaternion_0",
     "target/quaternion_1",
     "target/quaternion_2",
-    "target/quaternion_3"
+    "target/quaternion_3",
+    "target/status",
   };
 
   // pre-reserve command interfaces

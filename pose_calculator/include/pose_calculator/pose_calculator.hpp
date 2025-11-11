@@ -59,7 +59,7 @@ protected:
 
   geometry_msgs::msg::PoseStamped pose_msg_;
 
-  mutable std::array<double, 7> data_{{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0}};
+  std::array<double, 7> data_{{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0}};
 
 private:
   /**
@@ -68,13 +68,43 @@ private:
    * @note This method might return stale data if the data is not updated. This is to ensure that
    * the data from the sensor is not discontinuous.
    */
-  void update_data_from_interfaces() const
+  void update_data_from_interfaces()
   {
     for (auto i = 0u; i < data_.size(); ++i) {
       const auto data = state_interfaces_[i].get_optional();
       if (data.has_value()) {
         data_[i] = data.value();
       }
+    }
+    // TODO(anyone) does ethercat_ros2_control support masking a status bit several times? 
+    // it did not work for me (ethercat got stuck in init phase)
+    const auto op = state_interfaces_.back().get_optional();
+    if (op.has_value()) {
+      const auto status = static_cast<uint32_t>(op.value());
+      std::ignore = exported_state_interfaces_.at(
+        get_node()->get_name() +
+        std::string("/target/measurement_ok"))->set_value(
+        static_cast<double>((status & 0x02) >> 1 ));
+      std::ignore = exported_state_interfaces_.at(
+        get_node()->get_name() +
+        std::string("/target/measure_mode_3d"))->set_value(
+        static_cast<double>((status & 0x04) >> 2 ));
+      std::ignore = exported_state_interfaces_.at(
+        get_node()->get_name() +
+        std::string("/target/measure_mode_6d"))->set_value(
+        static_cast<double>((status & 0x08) >> 3 ));
+      std::ignore = exported_state_interfaces_.at(
+        get_node()->get_name() +
+        std::string("/target/bad_accuracy"))->set_value(
+        static_cast<double>((status & 0x016) >> 4 ));
+      std::ignore = exported_state_interfaces_.at(
+        get_node()->get_name() +
+        std::string("/target/angle_out_of_range"))->set_value(
+        static_cast<double>((status & 0x032) >> 5 ));
+      std::ignore = exported_state_interfaces_.at(
+        get_node()->get_name() +
+        std::string("/target/distance_out_of_range"))->set_value(
+        static_cast<double>((status & 0x064) >> 6 ));
     }
   }
 };
