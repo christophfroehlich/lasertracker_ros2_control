@@ -50,8 +50,8 @@ docker run -it \
 check if the docker can access the device
 ```bash
 cd /home/lasertracker_ws
-ethercat slaves
 ./src/lasertracker_ros2_control/symlink.sh 
+ethercat slaves
 ```
 
 build and run the ros2_control system
@@ -80,3 +80,4 @@ A healthy startup is
 [ros2_control_node-1] [WARN] [1762856482.859073157] [EthercatDriver]: Slave: (alias: 0, pos: 0, vendor_id: 1540, prod_id: 1) --> operational.
 [ros2_control_node-1] [WARN] [1762856482.959029324] [EthercatDriver]: Master AL states: 0x08.
 ```
+If it is stuck here, try to powercylce the laser tracker. (powercycle the system.d service or RPi does not always help.)
