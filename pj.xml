@@ -1,71 +1,101 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <root>
- <tabbed_widget parent="main_window" name="Main Window">
-  <Tab containers="1" tab_name="orientation">
+ <tabbed_widget name="Main Window" parent="main_window">
+  <Tab tab_name="orientation" containers="1">
    <Container>
     <DockSplitter orientation="-" count="2" sizes="0.5;0.5">
      <DockArea name="...">
-      <plot style="Lines" flip_y="false" flip_x="false" mode="TimeSeries">
-       <range right="13.831052" bottom="-0.671047" top="0.738684" left="8.840540"/>
+      <plot flip_x="false" flip_y="false" mode="TimeSeries" style="Lines">
+       <range right="2353.527889" left="2345.597446" bottom="-0.025000" top="1.025000"/>
        <limitY/>
-       <curve color="#1f77b4" name="/lasertracker/pose_broadcaster/pose/pose/orientation/w"/>
-       <curve color="#d62728" name="/lasertracker/pose_broadcaster/pose/pose/orientation/x"/>
-       <curve color="#1ac938" name="/lasertracker/pose_broadcaster/pose/pose/orientation/y"/>
-       <curve color="#ff7f0e" name="/lasertracker/pose_broadcaster/pose/pose/orientation/z"/>
-       <curve color="#f14cc1" name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/orientation.w"/>
-       <curve color="#9467bd" name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/orientation.x"/>
-       <curve color="#17becf" name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/orientation.y"/>
-       <curve color="#bcbd22" name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/orientation.z"/>
+       <curve name="/lasertracker/pose_broadcaster/pose/pose/orientation/w" color="#1f77b4"/>
+       <curve name="/lasertracker/pose_broadcaster/pose/pose/orientation/x" color="#d62728"/>
+       <curve name="/lasertracker/pose_broadcaster/pose/pose/orientation/y" color="#1ac938"/>
+       <curve name="/lasertracker/pose_broadcaster/pose/pose/orientation/z" color="#ff7f0e"/>
+       <curve name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/orientation.w" color="#f14cc1"/>
+       <curve name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/orientation.x" color="#9467bd"/>
+       <curve name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/orientation.y" color="#17becf"/>
+       <curve name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/orientation.z" color="#bcbd22"/>
       </plot>
      </DockArea>
      <DockArea name="...">
-      <plot style="Lines" flip_y="false" flip_x="false" mode="TimeSeries">
-       <range right="13.831052" bottom="-1.464453" top="1.363230" left="8.840540"/>
+      <plot flip_x="false" flip_y="false" mode="TimeSeries" style="Lines">
+       <range right="2353.527889" left="2345.597446" bottom="-0.078540" top="3.220132"/>
        <limitY/>
-       <curve color="#1f77b4" name="/lasertracker/pose_broadcaster/pose/pose/orientation/pitch"/>
-       <curve color="#d62728" name="/lasertracker/pose_broadcaster/pose/pose/orientation/roll"/>
-       <curve color="#1ac938" name="/lasertracker/pose_broadcaster/pose/pose/orientation/yaw"/>
+       <curve name="/lasertracker/pose_broadcaster/pose/pose/orientation/pitch" color="#1f77b4"/>
+       <curve name="/lasertracker/pose_broadcaster/pose/pose/orientation/roll" color="#d62728"/>
+       <curve name="/lasertracker/pose_broadcaster/pose/pose/orientation/yaw" color="#1ac938"/>
       </plot>
      </DockArea>
     </DockSplitter>
    </Container>
   </Tab>
-  <Tab containers="1" tab_name="pose">
+  <Tab tab_name="pose" containers="1">
    <Container>
     <DockSplitter orientation="-" count="1" sizes="1">
      <DockArea name="...">
-      <plot style="Lines" flip_y="false" flip_x="false" mode="TimeSeries">
-       <range right="13.831052" bottom="-0.366279" top="1.230439" left="8.840920"/>
+      <plot flip_x="false" flip_y="false" mode="TimeSeries" style="Lines">
+       <range right="2353.527889" left="2348.537800" bottom="-0.100000" top="0.100000"/>
        <limitY/>
-       <curve color="#ff7f0e" name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/position.x"/>
-       <curve color="#f14cc1" name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/position.y"/>
-       <curve color="#9467bd" name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/position.z"/>
+       <curve name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/position.x" color="#ff7f0e"/>
+       <curve name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/position.y" color="#f14cc1"/>
+       <curve name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/position.z" color="#9467bd"/>
       </plot>
      </DockArea>
     </DockSplitter>
    </Container>
   </Tab>
-  <Tab containers="1" tab_name="EtherCAT">
+  <Tab tab_name="EtherCAT" containers="1">
    <Container>
     <DockSplitter orientation="-" count="2" sizes="0.5;0.5">
      <DockArea name="...">
-      <plot style="Lines" flip_y="false" flip_x="false" mode="TimeSeries">
-       <range right="13.831052" bottom="83896841.900000" top="83896842.100000" left="8.840920"/>
+      <plot flip_x="false" flip_y="false" mode="TimeSeries" style="Lines">
+       <range right="2353.527889" left="2348.537800" bottom="-2097164.800000" top="85983756.800000"/>
        <limitY/>
-       <curve color="#17becf" name="/lasertracker/controller_manager/introspection_data/values/state_interface.target/status"/>
+       <curve name="/lasertracker/controller_manager/introspection_data/values/state_interface.target/status" color="#17becf"/>
       </plot>
      </DockArea>
      <DockArea name="...">
-      <plot style="Lines" flip_y="false" flip_x="false" mode="TimeSeries">
-       <range right="13.831052" bottom="815676574200817408.000000" top="815676579429626368.000000" left="8.840920"/>
+      <plot flip_x="false" flip_y="false" mode="TimeSeries" style="Lines">
+       <range right="2353.527889" left="2348.537800" bottom="-20404396477851392.000000" top="836580255591909376.000000"/>
        <limitY/>
-       <curve color="#bcbd22" name="/lasertracker/controller_manager/introspection_data/values/state_interface.target/timestamp"/>
+       <curve name="/lasertracker/controller_manager/introspection_data/values/state_interface.target/timestamp" color="#bcbd22"/>
       </plot>
      </DockArea>
     </DockSplitter>
    </Container>
   </Tab>
-  <currentTabIndex index="2"/>
+  <Tab tab_name="Status" containers="1">
+   <Container>
+    <DockSplitter orientation="-" count="3" sizes="0.332956;0.334088;0.332956">
+     <DockArea name="...">
+      <plot flip_x="false" flip_y="false" mode="TimeSeries" style="Lines">
+       <range right="2353.527889" left="2348.537800" bottom="-0.025000" top="1.025000"/>
+       <limitY max="1.025" min="-0.025"/>
+       <curve name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/measurement_ok" color="#bcbd22"/>
+      </plot>
+     </DockArea>
+     <DockArea name="...">
+      <plot flip_x="false" flip_y="false" mode="TimeSeries" style="Lines">
+       <range right="2353.527889" left="2348.537800" bottom="-0.025000" top="1.025000"/>
+       <limitY max="1.025" min="-0.025"/>
+       <curve name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/angle_out_of_range" color="#1ac938"/>
+       <curve name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/bad_accuracy" color="#ff7f0e"/>
+       <curve name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/distance_out_of_range" color="#f14cc1"/>
+      </plot>
+     </DockArea>
+     <DockArea name="...">
+      <plot flip_x="false" flip_y="false" mode="TimeSeries" style="Lines">
+       <range right="2353.527889" left="2348.537800" bottom="-0.025000" top="1.025000"/>
+       <limitY max="1.025" min="-0.025"/>
+       <curve name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/measure_mode_3d" color="#9467bd"/>
+       <curve name="/lasertracker/controller_manager/introspection_data/values/state_interface.pose_calculator/target/measure_mode_6d" color="#17becf"/>
+      </plot>
+     </DockArea>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <currentTabIndex index="3"/>
  </tabbed_widget>
  <use_relative_time_offset enabled="1"/>
  <!-- - - - - - - - - - - - - - - -->
