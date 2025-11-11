@@ -2,9 +2,8 @@
 Leica Hexagon Lasertracker with RTFP-EtherCAT via ros2_control
 
 ## Install
-On the host system
-https://icube-robotics.github.io/ethercat_driver_ros2/quickstart/installation.html
-for ethercat configuration.
+Follow the steps in [compile_ethercat.sh](compile_ethercat.sh) for ethercat configuration.
+More information in the [ethercat_ros2_control](https://icube-robotics.github.io/ethercat_driver_ros2/quickstart/installation.html) docs or [this blog](https://embeng.dynv6.net/igh-ethercat-master-on-bbb-rpi).
 
 Build dockerfile included in this repo
 ```bash
@@ -42,14 +41,18 @@ docker run -it \
     lasertracker_ros2_control
 ```
 
+check if the docker can access the device
+```bash
+cd /home/lasertracker_ws
+ethercat slaves
+./src/lasertracker_ros2_control/symlink.sh 
+```
+
+build and run the ros2_control system
 ```bash
 cd /home/lasertracker_ws
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo
 source install/setup.bash
-sudo ln -s /usr/local/etherlab/bin/ethercat /usr/bin/
-sudo ln -s /usr/local/etherlab/etc/init.d/ethercat /etc/init.d/ethercat
-sudo mkdir -p /etc/sysconfig
-sudo cp /usr/local/etherlab/etc/sysconfig/ethercat /etc/sysconfig/ethercat
 export CYCLONEDDS_URI=/opt/ait/install/config/cyclonedds_config.xml
 ros2 launch lasertracker_ros2_control lasertracker.launch.xml
 ```

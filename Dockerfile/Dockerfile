@@ -13,7 +13,7 @@ RUN apt-get update && apt-get upgrade -y && \
 WORKDIR /home/ethercat_ws
 RUN git clone https://gitlab.com/etherlab.org/ethercat.git && \
     cd ethercat && \
-    git checkout stable-1.5 && \
+    git checkout stable-1.6 && \
     ./bootstrap && \
     ./configure --prefix=/usr/local/etherlab --disable-kernel && \
     make && make install
