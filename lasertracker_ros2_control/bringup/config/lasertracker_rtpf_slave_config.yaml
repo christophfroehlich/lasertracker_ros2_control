@@ -1,80 +1,64 @@
 # Configuration file for Leica-RT-Output
 vendor_id: 0x00000604
 product_id: 0x00000001
-tpdo: # TxPDO
+tpdo:  # TxPDO
   - index: 0x1a00
     channels:
       - {
           index: 0x6000,
           sub_index: 0,
-          type: bool,
-          mask: 2,
-          state_interface: measurement_ok,
+          type: uint32,
+          state_interface: status
         }
       - {
-          index: 0x6000,
+          index: 0x6001,
           sub_index: 0,
-          type: bool,
-          mask: 3,
-          state_interface: measure_mode_3d,
+          type: double,
+          state_interface: angle_hz
         }
       - {
-          index: 0x6000,
+          index: 0x6002,
           sub_index: 0,
-          type: bool,
-          mask: 4,
-          state_interface: measure_mode_6d,
+          type: double,
+          state_interface: angle_vt
         }
       - {
-          index: 0x6000,
+          index: 0x6003,
           sub_index: 0,
-          type: bool,
-          mask: 5,
-          state_interface: bad_accuracy,
+          type: double,
+          state_interface: distance
         }
-      - {
-          index: 0x6000,
-          sub_index: 0,
-          type: bool,
-          mask: 6,
-          state_interface: angle_out_of_range,
-        }
-      - {
-          index: 0x6000,
-          sub_index: 0,
-          type: bool,
-          mask: 7,
-          state_interface: distance_out_of_range,
-        }
-      - {index: 0x6001, sub_index: 0, type: double, state_interface: angle_hz}
-      - {index: 0x6002, sub_index: 0, type: double, state_interface: angle_vt}
-      - {index: 0x6003, sub_index: 0, type: double, state_interface: distance}
       - {
           index: 0x6004,
           sub_index: 0,
           type: double,
-          state_interface: quaternion_0,
+          state_interface: quaternion_0
         }
       - {
           index: 0x6005,
           sub_index: 0,
           type: double,
-          state_interface: quaternion_1,
+          state_interface: quaternion_1
         }
       - {
           index: 0x6006,
           sub_index: 0,
           type: double,
-          state_interface: quaternion_2,
+          state_interface: quaternion_2
         }
       - {
           index: 0x6007,
           sub_index: 0,
           type: double,
-          state_interface: quaternion_3,
+          state_interface: quaternion_3
         }
-      - {index: 0x6008, sub_index: 0, type: uint64, state_interface: timestamp}
-sm: # Sync Manager
+      - {
+          index: 0x6008,
+          sub_index: 0,
+          type: uint64,
+          state_interface: timestamp
+        }
+sm:  # Sync Manager
   - {index: 0, type: output, pdo: ~, watchdog: disable}
   - {index: 1, type: input, pdo: ~, watchdog: disable}
   - {index: 2, type: output, pdo: rpdo, watchdog: enable}
