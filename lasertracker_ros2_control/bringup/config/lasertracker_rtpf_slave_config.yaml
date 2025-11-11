@@ -15,35 +15,35 @@ tpdo: # TxPDO
           index: 0x6000,
           sub_index: 0,
           type: bool,
-          mask: 3,
+          mask: 4,
           state_interface: measure_mode_3d,
         }
       - {
           index: 0x6000,
           sub_index: 0,
           type: bool,
-          mask: 4,
+          mask: 8,
           state_interface: measure_mode_6d,
         }
       - {
           index: 0x6000,
           sub_index: 0,
           type: bool,
-          mask: 5,
+          mask: 16,
           state_interface: bad_accuracy,
         }
       - {
           index: 0x6000,
           sub_index: 0,
           type: bool,
-          mask: 6,
+          mask: 32,
           state_interface: angle_out_of_range,
         }
       - {
           index: 0x6000,
           sub_index: 0,
           type: bool,
-          mask: 7,
+          mask: 64,
           state_interface: distance_out_of_range,
         }
       - {index: 0x6001, sub_index: 0, type: double, state_interface: angle_hz}
