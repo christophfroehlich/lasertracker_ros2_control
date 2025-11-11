@@ -27,6 +27,12 @@ should give
 ```bash
 0  0:0  PREOP  +  Leica RT Output
 ```
+To read angle_hz variable, call
+```bash
+ethercat upload -p 0 0x6001 0x0 --type double
+```
+
+
 Run docker
 ```bash
 docker run -it \
@@ -54,5 +60,23 @@ cd /home/lasertracker_ws
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo
 source install/setup.bash
 export CYCLONEDDS_URI=/opt/ait/install/config/cyclonedds_config.xml
-ros2 launch lasertracker_ros2_control lasertracker.launch.xml
+ros2 launch lasertracker_ros2_control lasertracker.launch.xml 
+```
+
+A healthy startup is
+```bash
+[ros2_control_node-1] [INFO] [1762856480.564804010] [EthercatDriver]: Activated EcMaster!
+[ros2_control_node-1] [WARN] [1762856481.564913010] [EthercatDriver]: 1 slave(s).
+[ros2_control_node-1] [WARN] [1762856481.564943510] [EthercatDriver]: Master AL states: 0x02.
+[ros2_control_node-1] [WARN] [1762856481.564950065] [EthercatDriver]: Link is up.
+[ros2_control_node-1] [WARN] [1762856481.564962584] [EthercatDriver]: Slave: State 0x02.
+[ros2_control_node-1] [WARN] [1762856481.564968102] [EthercatDriver]: Slave: online.
+[ros2_control_node-1] [INFO] [1762856481.565014288] [EthercatDriver]: System Successfully started!
+[ros2_control_node-1] [WARN] [1762856481.759087102] [EthercatDriver]: Slave: State 0x01.
+[ros2_control_node-1] [WARN] [1762856481.859030547] [EthercatDriver]: Slave: State 0x02.
+[ros2_control_node-1] [INFO] [1762856482.799037194] [EthercatDriver]: Domain: WC 1.
+[ros2_control_node-1] [INFO] [1762856482.799067231] [EthercatDriver]: Domain: State COMPLETE.
+[ros2_control_node-1] [WARN] [1762856482.859043305] [EthercatDriver]: Slave: State 0x08.
+[ros2_control_node-1] [WARN] [1762856482.859073157] [EthercatDriver]: Slave: (alias: 0, pos: 0, vendor_id: 1540, prod_id: 1) --> operational.
+[ros2_control_node-1] [WARN] [1762856482.959029324] [EthercatDriver]: Master AL states: 0x08.
 ```
