@@ -22,11 +22,11 @@
 
   <!-- Get URDF via xacro -->
   <let name="robot_description_content"
-       value="$(command '$(find-exec xacro) $(find-pkg-share lasertracker_ros2_control)/description/urdf/lasertracker.urdf.xacro mock_hardware:=false')"/>
+    value="$(command '$(find-exec xacro) $(find-pkg-share lasertracker_ros2_control)/description/urdf/lasertracker.urdf.xacro mock_hardware:=false')"/>
 
   <!-- Path to controller configurations -->
   <let name="robot_controllers"
-       value="$(find-pkg-share lasertracker_ros2_control)/bringup/config/lasertracker_controllers.yaml"/>
+    value="$(find-pkg-share lasertracker_ros2_control)/bringup/config/lasertracker_controllers.yaml"/>
 
   <!--
     Define the nodes to be launched.
@@ -50,15 +50,7 @@
     internal logic to wait for the controller_manager to be available.
   -->
   <node pkg="controller_manager" exec="spawner"
-        args="pose_calculator pose_broadcaster -c lasertracker/controller_manager --param-file $(var robot_controllers)"
-        name="robot_controller_spawner"/>
-
-  <!--
-    Static Transform Publisher Node
-    Publishes a static transform between 'world' and 'lasertracker' frames.
-  -->
-  <node pkg="tf2_ros" exec="static_transform_publisher"
-        args="--frame-id map --child-frame-id lasertracker"
-        name="static_transform_lasertracker"/>
+    args="pose_calculator pose_broadcaster -c lasertracker/controller_manager --param-file $(var robot_controllers)"
+    name="robot_controller_spawner"/>
 
 </launch>
