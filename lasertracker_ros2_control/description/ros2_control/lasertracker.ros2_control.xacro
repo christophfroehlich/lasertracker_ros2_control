@@ -3,58 +3,55 @@
 
   <xacro:arg name="mock_hardware" default="false"/>
   <xacro:property name="mock" value="$(arg mock_hardware)"/>
+  <xacro:arg name="bag_replay" default="false"/>
+  <xacro:property name="bag" value="$(arg bag_replay)"/>
+  <xacro:arg name="ethercat_hardware" default="false"/>
+  <xacro:property name="ethercat" value="$(arg ethercat_hardware)"/>
+
   <xacro:macro name="lasertracker_ros2_control">
 
-    <xacro:unless value="${mock}">
-      <ros2_control name="lasertracker" type="system" is_async="true" thread_priority="50">
+    <ros2_control name="lasertracker" type="system" is_async="true" thread_priority="50">
+      <xacro:if value="${bag}">
+        <hardware>
+          <plugin>cm_topic_hardware_component/CMTopicSystem</plugin>
+        </hardware>
+      </xacro:if>
+      <xacro:if value="${ethercat}">
         <hardware>
           <plugin>ethercat_driver/EthercatDriver</plugin>
           <param name="master_id">0</param>
           <param name="control_frequency">100</param>
         </hardware>
+      </xacro:if>
+      <xacro:if value="${mock}">
+        <hardware>
+          <plugin>mock_components/GenericSystem</plugin>
+        </hardware>
+      </xacro:if>
 
-        <sensor name="target">
-          <state_interface name="status"/>
-          <state_interface name="angle_hz"/>
-          <state_interface name="angle_vt"/>
-          <state_interface name="distance"/>
-          <state_interface name="quaternion_0"/>
-          <state_interface name="quaternion_1"/>
-          <state_interface name="quaternion_2"/>
-          <state_interface name="quaternion_3"/>
-          <state_interface name="timestamp"/>
+      <sensor name="target">
+        <state_interface name="status"/>
+        <state_interface name="angle_hz"/>
+        <state_interface name="angle_vt"/>
+        <state_interface name="distance"/>
+        <state_interface name="quaternion_0"/>
+        <state_interface name="quaternion_1"/>
+        <state_interface name="quaternion_2"/>
+        <state_interface name="quaternion_3">
+          <param name="initial_value">1.0</param>
+        </state_interface>
+        <state_interface name="timestamp"/>
 
+        <xacro:if value="${ethercat}">
           <ec_module name="lasertracker_rtpf">
             <plugin>ethercat_generic_plugins/GenericEcSlave</plugin>
             <param name="alias">0</param>
             <param name="position">0</param>
             <param name="slave_config">$(find lasertracker_ros2_control)/bringup/config/lasertracker_rtpf_slave_config.yaml</param>
           </ec_module>
-        </sensor>
-      </ros2_control>
-    </xacro:unless>
-
-    <xacro:if value="${mock}">
-      <ros2_control name="lasertracker" type="system" is_async="true" thread_priority="50">
-        <hardware>
-          <plugin>mock_components/GenericSystem</plugin>
-        </hardware>
-
-        <sensor name="target">
-          <state_interface name="status"/>
-          <state_interface name="angle_hz"/>
-          <state_interface name="angle_vt"/>
-          <state_interface name="distance"/>
-          <state_interface name="quaternion_0"/>
-          <state_interface name="quaternion_1"/>
-          <state_interface name="quaternion_2"/>
-          <state_interface name="quaternion_3">
-            <param name="initial_value">1.0</param>
-          </state_interface>
-          <state_interface name="timestamp"/>
-        </sensor>
-      </ros2_control>
-    </xacro:if>
+        </xacro:if>
+      </sensor>
+    </ros2_control>
 
   </xacro:macro>
 

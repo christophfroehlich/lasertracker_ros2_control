@@ -81,3 +81,19 @@ A healthy startup is
 [ros2_control_node-1] [WARN] [1762856482.959029324] [EthercatDriver]: Master AL states: 0x08.
 ```
 If it is stuck here, try to powercylce the laser tracker. (powercycle the system.d service or RPi does not always help.)
+
+## rosbag replay
+You can replay messages through the ros2_control stack using cm_topic_hardware_component by running the launch file with options
+
+```bash
+ros2 launch lasertracker_ros2_control lasertracker.launch.xml ethercat_hardware:=false bag_replay:=true
+```
+
+and replay a bag with the following options
+
+```bash
+ros2 bag play <bag_file> \
+  --topics /lasertracker/controller_manager/introspection_data/names /lasertracker/controller_manager/introspection_data/values \
+  --remap /lasertracker/controller_manager/introspection_data/names:=/lasertracker/lasertracker/names\
+          /lasertracker/controller_manager/introspection_data/values:=/lasertracker/lasertracker/values
+```

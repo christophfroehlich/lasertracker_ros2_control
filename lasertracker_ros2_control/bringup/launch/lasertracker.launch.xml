@@ -14,6 +14,9 @@
   limitations under the License.
 -->
 <launch>
+  <arg name="mock_hardware" default="false"/>
+  <arg name="bag_replay" default="false"/>
+  <arg name="ethercat_hardware" default="true"/>
 
   <!--
     Define variables using the 'let' tag for clarity and reuse.
@@ -22,7 +25,7 @@
 
   <!-- Get URDF via xacro -->
   <let name="robot_description_content"
-    value="$(command '$(find-exec xacro) $(find-pkg-share lasertracker_ros2_control)/description/urdf/lasertracker.urdf.xacro mock_hardware:=false')"/>
+    value="$(command '$(find-exec xacro) $(find-pkg-share lasertracker_ros2_control)/description/urdf/lasertracker.urdf.xacro mock_hardware:=$(var mock_hardware) bag_replay:=$(var bag_replay) ethercat_hardware:=$(var ethercat_hardware)')"/>
 
   <!-- Path to controller configurations -->
   <let name="robot_controllers"
