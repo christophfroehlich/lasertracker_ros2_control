@@ -50,7 +50,7 @@ docker run -it \
 check if the docker can access the device
 ```bash
 cd /home/lasertracker_ws
-./src/lasertracker_ros2_control/symlink.sh 
+./src/lasertracker_ros2_control/symlink.sh
 ethercat slaves
 ```
 
@@ -60,7 +60,7 @@ cd /home/lasertracker_ws
 colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo
 source install/setup.bash
 export CYCLONEDDS_URI=/opt/ait/install/config/cyclonedds_config.xml
-ros2 launch lasertracker_ros2_control lasertracker.launch.xml 
+ros2 launch lasertracker_ros2_control lasertracker.launch.xml
 ```
 
 A healthy startup is

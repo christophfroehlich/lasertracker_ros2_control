@@ -76,7 +76,7 @@ private:
         data_[i] = data.value();
       }
     }
-    // TODO(anyone) does ethercat_ros2_control support masking a status bit several times? 
+    // TODO(anyone) does ethercat_ros2_control support masking a status bit several times?
     // it did not work for me (ethercat got stuck in init phase)
     const auto op = state_interfaces_.back().get_optional();
     if (op.has_value()) {
