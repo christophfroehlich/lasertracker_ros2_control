@@ -9,10 +9,12 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <depend>pose_broadcaster</depend>
-  <depend>robot_state_publisher</depend>
+  <depend>cm_topic_hardware_component</depend>
   <depend>ethercat_driver</depend>
   <depend>ethercat_plugins</depend>
+  <depend>pose_broadcaster</depend>
+  <depend>pose_calculator</depend>
+  <depend>robot_state_publisher</depend>
   <depend>xacro</depend>
 
   <export>
