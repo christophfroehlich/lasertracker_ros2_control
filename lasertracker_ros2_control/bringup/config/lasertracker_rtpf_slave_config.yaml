@@ -1,6 +1,6 @@
 # Configuration file for Leica-RT-Output
-vendor_id: 0x1540
-product_id: 0x0000001
+vendor_id: 0x00000604
+product_id: 0x00000001
 tpdo:  # TxPDO
   - index: 0x1a00
     channels:
@@ -61,5 +61,5 @@ tpdo:  # TxPDO
 sm:  # Sync Manager
   - {index: 0, type: output, pdo: ~, watchdog: disable}
   - {index: 1, type: input, pdo: ~, watchdog: disable}
-  - {index: 2, type: output, pdo: ~, watchdog: disable}
+  - {index: 2, type: output, pdo: rpdo, watchdog: enable}
   - {index: 3, type: input, pdo: tpdo, watchdog: disable}

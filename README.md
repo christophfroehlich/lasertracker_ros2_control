@@ -2,13 +2,38 @@
 Leica Hexagon Lasertracker with RTFP-EtherCAT via ros2_control
 
 ## Install
-On the host system
-https://icube-robotics.github.io/ethercat_driver_ros2/quickstart/installation.html
+Follow the steps in [compile_ethercat.sh](compile_ethercat.sh) for ethercat configuration.
+More information in the [ethercat_ros2_control](https://icube-robotics.github.io/ethercat_driver_ros2/quickstart/installation.html) docs or [this blog](https://embeng.dynv6.net/igh-ethercat-master-on-bbb-rpi).
+
+Build dockerfile included in this repo
 ```bash
 docker build . -t lasertracker_ros2_control -f Dockerfile/Dockerfile
 ```
 
 ## Run
+on host:
+```bash
+sudo /etc/init.d/ethercat start
+```
+should give you `Starting EtherCAT master 1.6.8  done`.
+
+Check if device was created
+```bash
+ls -la /dev/EtherCAT0
+ethercat master
+ethercat slaves
+```
+should give
+```bash
+0  0:0  PREOP  +  Leica RT Output
+```
+To read angle_hz variable, call
+```bash
+ethercat upload -p 0 0x6001 0x0 --type double
+```
+
+
+Run docker
 ```bash
 docker run -it \
     --cap-add=sys_nice \
@@ -22,14 +47,53 @@ docker run -it \
     lasertracker_ros2_control
 ```
 
+check if the docker can access the device
 ```bash
 cd /home/lasertracker_ws
-colcon build --packages-up-to --symlink-install
+./src/lasertracker_ros2_control/symlink.sh
+ethercat slaves
+```
+
+build and run the ros2_control system
+```bash
+cd /home/lasertracker_ws
+colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo
 source install/setup.bash
-sudo ln -s /usr/local/etherlab/bin/ethercat /usr/bin/
-sudo ln -s /usr/local/etherlab/etc/init.d/ethercat /etc/init.d/ethercat
-sudo mkdir -p /etc/sysconfig
-sudo cp /usr/local/etherlab/etc/sysconfig/ethercat /etc/sysconfig/ethercat
 export CYCLONEDDS_URI=/opt/ait/install/config/cyclonedds_config.xml
-ros2 launch lasertracker_ros2_control lasertracker.launch.xml 
+ros2 launch lasertracker_ros2_control lasertracker.launch.xml
+```
+
+A healthy startup is
+```bash
+[ros2_control_node-1] [INFO] [1762856480.564804010] [EthercatDriver]: Activated EcMaster!
+[ros2_control_node-1] [WARN] [1762856481.564913010] [EthercatDriver]: 1 slave(s).
+[ros2_control_node-1] [WARN] [1762856481.564943510] [EthercatDriver]: Master AL states: 0x02.
+[ros2_control_node-1] [WARN] [1762856481.564950065] [EthercatDriver]: Link is up.
+[ros2_control_node-1] [WARN] [1762856481.564962584] [EthercatDriver]: Slave: State 0x02.
+[ros2_control_node-1] [WARN] [1762856481.564968102] [EthercatDriver]: Slave: online.
+[ros2_control_node-1] [INFO] [1762856481.565014288] [EthercatDriver]: System Successfully started!
+[ros2_control_node-1] [WARN] [1762856481.759087102] [EthercatDriver]: Slave: State 0x01.
+[ros2_control_node-1] [WARN] [1762856481.859030547] [EthercatDriver]: Slave: State 0x02.
+[ros2_control_node-1] [INFO] [1762856482.799037194] [EthercatDriver]: Domain: WC 1.
+[ros2_control_node-1] [INFO] [1762856482.799067231] [EthercatDriver]: Domain: State COMPLETE.
+[ros2_control_node-1] [WARN] [1762856482.859043305] [EthercatDriver]: Slave: State 0x08.
+[ros2_control_node-1] [WARN] [1762856482.859073157] [EthercatDriver]: Slave: (alias: 0, pos: 0, vendor_id: 1540, prod_id: 1) --> operational.
+[ros2_control_node-1] [WARN] [1762856482.959029324] [EthercatDriver]: Master AL states: 0x08.
+```
+If it is stuck here, try to powercylce the laser tracker. (powercycle the system.d service or RPi does not always help.)
+
+## rosbag replay
+You can replay messages through the ros2_control stack using cm_topic_hardware_component by running the launch file with options
+
+```bash
+ros2 launch lasertracker_ros2_control lasertracker.launch.xml ethercat_hardware:=false bag_replay:=true
+```
+
+and replay a bag with the following options
+
+```bash
+ros2 bag play <bag_file> \
+  --topics /lasertracker/controller_manager/introspection_data/names /lasertracker/controller_manager/introspection_data/values \
+  --remap /lasertracker/controller_manager/introspection_data/names:=/lasertracker/lasertracker/names\
+          /lasertracker/controller_manager/introspection_data/values:=/lasertracker/lasertracker/values
 ```

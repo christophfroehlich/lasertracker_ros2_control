@@ -1,0 +1,7 @@
+<library path="pose_calculator">
+  <class name="pose_calculator/PoseCalculator"
+    type="pose_calculator::PoseCalculator"
+    base_class_type="controller_interface::ChainableControllerInterface">
+    <description></description>
+  </class>
+</library>
