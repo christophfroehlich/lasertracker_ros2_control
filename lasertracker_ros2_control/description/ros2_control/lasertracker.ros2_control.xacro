@@ -31,12 +31,24 @@
 
       <sensor name="target">
         <state_interface name="status"/>
-        <state_interface name="angle_hz"/>
-        <state_interface name="angle_vt"/>
-        <state_interface name="distance"/>
-        <state_interface name="quaternion_0"/>
-        <state_interface name="quaternion_1"/>
-        <state_interface name="quaternion_2"/>
+        <state_interface name="angle_hz">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="angle_vt">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="distance">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="quaternion_0">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="quaternion_1">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="quaternion_2">
+          <param name="initial_value">0.0</param>
+        </state_interface>
         <state_interface name="quaternion_3">
           <param name="initial_value">1.0</param>
         </state_interface>
